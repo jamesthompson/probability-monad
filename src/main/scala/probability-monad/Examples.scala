@@ -289,13 +289,7 @@ object Examples {
       .filter(_ contains Boy)
   }
   def runSmith = smith.pr(_.forall(_ == Boy)) // 0.333
-
-  val ead = {
-    EAD.repat(1).filter(p => p > 24 && p < 26)
-  }
   
-  
-
   /**
    * Mr. Miller has two children. One of them is a boy born on Tuesday.
    * What is the probability both children are boys?

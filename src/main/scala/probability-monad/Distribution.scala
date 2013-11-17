@@ -238,7 +238,7 @@ trait Distribution[A] { self =>
 }
 
 object Distribution {
-  private val rand = new Random()
+  private val rand = new Random(System.nanoTime)
 
   def always[A](value: A) = new Distribution[A] {
     override def get = value
@@ -328,7 +328,7 @@ object Distribution {
     override def get = rand.nextGaussian()
   }
 
-  // val ead = EAD.repeat(1).pr(_.forall(_ < 25)) * 100.0 where the value is less than that day, giving cdf value for that day...
+  // val ead = EAD.repeat(1).pr(_.forall(_ < 26)) * 100.0 where the value is less than that day, giving cdf value for that day...
   // EAD.bucketedHist(25, 30, 5) histogram of probablities by day for this week
   // From latest available visajourney.com data, mean EAD time is 28.11 days with 5.61 days stdev
   object EAD extends Distribution[Double] {
