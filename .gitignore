@@ -1,4 +1,5 @@
 # sbt artifacts
+.DS_Store
 target
 *.class
 .lib

@@ -5,8 +5,8 @@ import scala.annotation.tailrec
 import scala.math.BigDecimal
 import scala.util.Random
 
-trait Distribution[A] {
-  self =>
+trait Distribution[A] { self =>
+
   protected def get: A
 
   override def toString = "<distribution>"
@@ -326,6 +326,13 @@ object Distribution {
 
   object normal extends Distribution[Double] {
     override def get = rand.nextGaussian()
+  }
+
+  // val ead = EAD.repeat(1).pr(_.forall(_ < 25)) * 100.0 where the value is less than that day, giving cdf value for that day...
+  // EAD.bucketedHist(25, 30, 5) histogram of probablities by day for this week
+  // From latest available visajourney.com data, mean EAD time is 28.11 days with 5.61 days stdev
+  object EAD extends Distribution[Double] {
+    override def get = (rand.nextGaussian * 5.61) + 28.11
   }
 
   def chi2(n: Int): Distribution[Double] = {
